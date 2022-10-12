@@ -3,7 +3,7 @@
 
 <div class="header-bar">
     <div>
-        <h1>Hello {{reguest.user|title}}</h1>
+        <h1>Hello {{request.user|title}}</h1>
         <h3 style="margin:0">You have <i>{{count}}</i> incomplete item{{ count|pluralize:"s" }}</h3>
     </div>
     {% if request.user.is_authenticated %}
@@ -14,10 +14,13 @@
 </div>
 
 <div id="search-add-wrapper">
-    <form method="GET" style="margin-top: 20px; display; flex;">
-        <input type="text" name="search-area" value="{{search_input}}"><input class="button" type="submit" value="Search">
+    <form method="GET" style="display: flex;">
+        <input type='text' name='search-area' placeholder="Search your task" value="{{search_input}}">
+        <input class="button" type="submit" value='Search'>
     </form>
-    <a id="add-link" href="{% url 'task-create' %}">&#43;</a>
+    {% if tasks|length > 0 %}
+    <a id="add-link" href="{% url 'task-create' %}">&#8889;</a>
+    {% endif %}
 </div>
 
 <!--<hr>-->
